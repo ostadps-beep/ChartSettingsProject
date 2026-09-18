@@ -1,150 +1,71 @@
 using System;
 using System.ComponentModel;
-using System.Windows.Input;
 using System.IO;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Windows.Input;
 
 public class ChartSettingsViewModel : INotifyPropertyChanged
 {
-    public ChartSettingsRoot Settings { get; set; } = new();
+    private ChartSettingsModel _model;
 
-    // لیست‌ها برای ComboBox ها
-    public IList<string> ChartTypes { get; } = new[] { "Candlestick", "Line", "Histogram", "Combined" };
-    public IList<string> ZoomBehaviors { get; } = new[] { "Time Axis", "Price Axis", "Both" };
-    public IList<string> PriceAxisPositions { get; } = new[] { "Left", "Right" };
-    public IList<string> GridStyles { get; } = new[] { "Solid", "Dashed", "Dotted" };
-    public IList<string> EngineModes { get; } = new[] { "Normal", "HighPerformance", "SafeMode" };
+    public ChartSettingsViewModel()
+    {
+        _model = new ChartSettingsModel();
+        ApplyCommand = new RelayCommand(_ => Apply());
+        OkCommand = new RelayCommand(_ => Ok());
+        CancelCommand = new RelayCommand(_ => Cancel());
+        ResetCommand = new RelayCommand(_ => Reset());
+    }
 
-    // Commands
+    public ChartSettingsModel Model => _model;
+
     public ICommand ApplyCommand { get; }
     public ICommand OkCommand { get; }
     public ICommand CancelCommand { get; }
     public ICommand ResetCommand { get; }
 
-    // ColorPicker Commands
-    public ICommand PickAxisColorCommand { get; }
-    public ICommand PickBullColorCommand { get; }
-    public ICommand PickBearColorCommand { get; }
-    public ICommand PickBackgroundColorCommand { get; }
-    public ICommand PickToolColorCommand { get; }
-    public ICommand PickAnalyticalMainColorCommand { get; }
-    public ICommand PickHudTextColorCommand { get; }
-
-    public ChartSettingsViewModel()
+    public int BodyThickness
     {
-        ApplyCommand = new RelayCommand(Apply);
-        OkCommand = new RelayCommand(Ok);
-        CancelCommand = new RelayCommand(Cancel);
-        ResetCommand = new RelayCommand(Reset);
-
-        PickAxisColorCommand = new RelayCommand(() => PickColor(v => Settings.Axes.AxisColor = v));
-        PickBullColorCommand = new RelayCommand(() => PickColor(v => Settings.Candles.BullColor = v));
-        PickBearColorCommand = new RelayCommand(() => PickColor(v => Settings.Candles.BearColor = v));
-        PickBackgroundColorCommand = new RelayCommand(() => PickColor(v => Settings.GridBackground.BackgroundColor = v));
-        PickToolColorCommand = new RelayCommand(() => PickColor(v => Settings.DrawingTools.ToolColor = v));
-        PickAnalyticalMainColorCommand = new RelayCommand(() => PickColor(v => Settings.AnalyticalModules.MainColor = v));
-        PickHudTextColorCommand = new RelayCommand(() => PickColor(v => Settings.HudOverlay.TextColor = v));
+        get => _model.Candles.BodyThickness;
+        set { _model.Candles.BodyThickness = Math.Clamp(value, 1, 10); OnPropertyChanged(nameof(BodyThickness)); }
     }
 
-    // -----------------------------
-    // APPLY — اجرای تنظیمات سنگین
-    // -----------------------------
-    private void Apply()
+    public bool ShowWicks
     {
-        // مثال: ارسال تنظیمات سنگین به موتور
-        SendToEngine("fps", Settings.Performance.FpsLimit);
-        SendToEngine("gpu", Settings.Performance.GpuAcceleration);
-        SendToEngine("engineMode", Settings.Advanced.EngineMode);
-        SendToEngine("visibleCandles", Settings.Chart.VisibleCandles);
-
-        // وابستگی‌ها
-        if (!Settings.GridBackground.ShowGrid)
-        {
-            Settings.GridBackground.GridLineStyle = "None";
-            Settings.GridBackground.GridTransparency = 100;
-        }
-
-        if (!Settings.Candles.ShowWicks)
-        {
-            Settings.Candles.WickThickness = 0;
-        }
-
-        OnPropertyChanged(nameof(Settings));
+        get => _model.Candles.ShowWicks;
+        set { _model.Candles.ShowWicks = value; OnPropertyChanged(nameof(ShowWicks)); }
     }
 
-    // -----------------------------
-    // OK — ذخیره + بستن پنل
-    // -----------------------------
-    private void Ok()
+    public string BackgroundColor
     {
-        SaveSettings();
-        // اینجا پنل را می‌بندی (در پروژهٔ اصلی)
+        get => _model.Grid.BackgroundColor;
+        set { _model.Grid.BackgroundColor = value; OnPropertyChanged(nameof(BackgroundColor)); }
     }
 
-    // -----------------------------
-    // CANCEL — بستن بدون ذخیره
-    // -----------------------------
-    private void Cancel()
-    {
-        // فقط پنل را ببند
-    }
+    private void Apply() => Save();
+    private void Ok() => Save();
+    private void Cancel() { }
 
-    // -----------------------------
-    // RESET — بازگشت به پیش‌فرض‌ها
-    // -----------------------------
     private void Reset()
     {
-        Settings = new ChartSettingsRoot();
-        OnPropertyChanged(nameof(Settings));
+        _model = new ChartSettingsModel();
+        OnPropertyChanged(nameof(Model));
     }
 
-    // -----------------------------
-    // ذخیره تنظیمات در JSON
-    // -----------------------------
-    private void SaveSettings()
+    private void Save()
     {
-        var json = JsonConvert.SerializeObject(Settings, Formatting.Indented);
-        File.WriteAllText("chart_settings.json", json);
+        File.WriteAllText("ChartSettings.json", JsonSerializer.Serialize(_model, new JsonSerializerOptions { WriteIndented = true }));
     }
 
-    // -----------------------------
-    // لود تنظیمات از JSON
-    // -----------------------------
-    public void LoadSettings()
-    {
-        if (!File.Exists("chart_settings.json"))
-            return;
-
-        var json = File.ReadAllText("chart_settings.json");
-        Settings = JsonConvert.DeserializeObject<ChartSettingsRoot>(json);
-        OnPropertyChanged(nameof(Settings));
-    }
-
-    // -----------------------------
-    // انتخاب رنگ (ColorPicker)
-    // -----------------------------
-    private void PickColor(Action<string> setter)
-    {
-        // اینجا ColorPicker واقعی پروژه را صدا می‌زنی
-        string selectedColor = "#FF00FF"; // مثال
-        setter(selectedColor);
-        OnPropertyChanged(nameof(Settings));
-    }
-
-    // -----------------------------
-    // ارسال تنظیمات به موتور اصلی
-    // -----------------------------
-    private void SendToEngine(string key, object value)
-    {
-        // اینجا Bridge پایتون/C++ را صدا می‌زنی
-        // مثال:
-        // PythonBridge.Send(key, value);
-    }
-
-    // -----------------------------
-    // INotifyPropertyChanged
-    // -----------------------------
     public event PropertyChangedEventHandler PropertyChanged;
-    protected void OnPropertyChanged(string name)
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    private void OnPropertyChanged(string name) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+}
+
+public class RelayCommand : ICommand
+{
+    private readonly Action<object> _execute;
+    public RelayCommand(Action<object> execute) => _execute = execute;
+    public bool CanExecute(object parameter) => true;
+    public void Execute(object parameter) => _execute(parameter);
+    public event EventHandler CanExecuteChanged;
 }

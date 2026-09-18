@@ -1,0 +1,44 @@
+================================================================================
+DOCUMENT 00 — Document Index
+TYPE: Master Index
+================================================================================
+
+PURPOSE
+-------
+This file provides a complete index of all documentation files in the Docs folder.
+It serves as a roadmap to prevent confusion and ensure the model knows which file
+to read for each purpose.
+
+DOCUMENT LIST
+-------------
+
+01_Model_Implementation_Guide.txt
+- Defines how ChartSettingsModel and all sub-models must be implemented.
+- Prevents JSON structure errors.
+
+02_ViewModel_Behavior_Guide.txt
+- Defines binding, validation, dependencies, and button behavior.
+- Prevents incorrect UI behavior.
+
+03_UI_Modules_Assembly_Guide.txt
+- Defines how the Chart Settings Panel is assembled from its 10 modules.
+- Prevents UI assembly mistakes.
+
+04_Integration_Runtime_Rules.txt
+- Defines JSON, Python/C++ Bridge, and runtime rules.
+- Prevents integration errors.
+
+05_Model_Error_Prevention_Guide.txt
+- Defines rules to prevent model-level mistakes (misinterpretation, wrong controls,
+  wrong bindings, wrong button logic).
+- Prevents confusion during model execution.
+
+ARCHIVE (Legacy Documents)
+--------------------------
+ChartSettings_Specification.txt
+ChartSettings_UI_Mockup.txt
+ChartSettings_RepositoryStructure.txt
+
+================================================================================
+END OF DOCUMENT 00
+================================================================================

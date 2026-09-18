@@ -1,0 +1,46 @@
+================================================================================
+DOCUMENT 03 — UI Modules Assembly Guide
+TYPE: UI Assembly Specification
+================================================================================
+
+PURPOSE
+-------
+Defines how the Chart Settings Panel is assembled from its 10 UI modules.
+
+UI STRUCTURE
+------------
+Window Layout:
+- Sidebar (10 categories)
+- Header (title + description)
+- Content area (module content)
+- Footer buttons (Apply, OK, Cancel, Reset)
+
+SIDEBAR ORDER
+-------------
+1. Chart
+2. Axes
+3. Candles
+4. Grid & Background
+5. Drawing Tools
+6. Analytical Modules
+7. HUD & Overlay
+8. Performance
+9. Workspace
+10. Advanced
+
+MODULE RULES
+------------
+- Only one module visible at a time.
+- Switching sidebar items replaces content area.
+- Header updates based on selected module.
+
+FOOTER RULES
+------------
+Apply → save  
+OK → save + close  
+Cancel → close  
+Reset → restore defaults for current module  
+
+================================================================================
+END OF DOCUMENT 03
+================================================================================

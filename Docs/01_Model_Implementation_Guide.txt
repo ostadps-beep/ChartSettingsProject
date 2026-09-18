@@ -1,0 +1,40 @@
+================================================================================
+DOCUMENT 01 — Model Implementation Guide
+TYPE: Core Model Specification
+================================================================================
+
+PURPOSE
+-------
+This document defines how the ChartSettingsModel and all sub-models must be
+implemented. It ensures consistent JSON structure and prevents model confusion.
+
+MODEL STRUCTURE
+---------------
+ChartSettingsModel.cs contains the root object with the following sub-models:
+
+1. ChartModel
+2. AxesModel
+3. CandlesModel
+4. GridBackgroundModel
+5. DrawingToolsModel
+6. AnalyticalModulesModel
+7. HudOverlayModel
+8. PerformanceModel
+9. WorkspaceModel
+10. AdvancedModel
+
+IMPLEMENTATION RULES
+--------------------
+- All fields must match the JSON specification exactly.
+- All numeric fields must have default values.
+- All boolean fields must be initialized to false unless specified.
+- All color fields must be stored as HEX (#RRGGBB).
+- No additional fields may be added.
+
+OUTPUT RULES
+------------
+The model must always produce valid JSON matching the specification.
+
+================================================================================
+END OF DOCUMENT 01
+================================================================================

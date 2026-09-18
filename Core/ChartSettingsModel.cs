@@ -1,21 +1,40 @@
-// ChartSettingsModel.cs
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
-public class ChartSettingsRoot
+public class ChartSettingsModel
 {
-    public ChartSettings Chart { get; set; } = new();
-    public AxesSettings Axes { get; set; } = new();
-    public CandleSettings Candles { get; set; } = new();
-    public GridBackgroundSettings GridBackground { get; set; } = new();
-    public DrawingToolsSettings DrawingTools { get; set; } = new();
-    public AnalyticalModulesSettings AnalyticalModules { get; set; } = new();
-    public HudOverlaySettings HudOverlay { get; set; } = new();
-    public PerformanceSettings Performance { get; set; } = new();
-    public WorkspaceSettings Workspace { get; set; } = new();
-    public AdvancedSettings Advanced { get; set; } = new();
+    [JsonPropertyName("Chart")]
+    public ChartModel Chart { get; set; } = new();
+
+    [JsonPropertyName("Axes")]
+    public AxesModel Axes { get; set; } = new();
+
+    [JsonPropertyName("Candles")]
+    public CandlesModel Candles { get; set; } = new();
+
+    [JsonPropertyName("Grid")]
+    public GridBackgroundModel Grid { get; set; } = new();
+
+    [JsonPropertyName("Tools")]
+    public DrawingToolsModel Tools { get; set; } = new();
+
+    [JsonPropertyName("AnalyticalModules")]
+    public AnalyticalModulesModel AnalyticalModules { get; set; } = new();
+
+    [JsonPropertyName("HUD")]
+    public HudOverlayModel HUD { get; set; } = new();
+
+    [JsonPropertyName("Performance")]
+    public PerformanceModel Performance { get; set; } = new();
+
+    [JsonPropertyName("Workspace")]
+    public WorkspaceModel Workspace { get; set; } = new();
+
+    [JsonPropertyName("Advanced")]
+    public AdvancedModel Advanced { get; set; } = new();
 }
 
-// 1) Chart
-public class ChartSettings
+public class ChartModel
 {
     public string Type { get; set; } = "Candlestick";
     public string ZoomBehavior { get; set; } = "Both";
@@ -26,8 +45,7 @@ public class ChartSettings
     public string MouseWheel { get; set; } = "Zoom";
 }
 
-// 2) Axes
-public class AxesSettings
+public class AxesModel
 {
     public string PricePosition { get; set; } = "Right";
     public bool ShowLastPrice { get; set; } = true;
@@ -41,8 +59,7 @@ public class AxesSettings
     public string TimeFormat { get; set; } = "HH:MM";
 }
 
-// 3) Candles
-public class CandleSettings
+public class CandlesModel
 {
     public string BullColor { get; set; } = "#00FF55";
     public string BearColor { get; set; } = "#FF3333";
@@ -54,8 +71,7 @@ public class CandleSettings
     public bool ShowBody { get; set; } = true;
 }
 
-// 4) Grid & Background
-public class GridBackgroundSettings
+public class GridBackgroundModel
 {
     public string BackgroundColor { get; set; } = "#1E1E1E";
     public string GradientMode { get; set; } = "None";
@@ -67,8 +83,7 @@ public class GridBackgroundSettings
     public int GridTransparency { get; set; } = 20;
 }
 
-// 5) Drawing Tools
-public class DrawingToolsSettings
+public class DrawingToolsModel
 {
     public string ToolColor { get; set; } = "#00A8FF";
     public int ToolThickness { get; set; } = 2;
@@ -81,8 +96,7 @@ public class DrawingToolsSettings
     public string DragBehavior { get; set; } = "Free";
 }
 
-// 6) Analytical Modules
-public class AnalyticalModulesSettings
+public class AnalyticalModulesModel
 {
     public List<double> InputParameters { get; set; } = new() { 14, 5 };
     public string DisplayType { get; set; } = "Line";
@@ -95,8 +109,7 @@ public class AnalyticalModulesSettings
     public int Thickness { get; set; } = 2;
 }
 
-// 7) HUD & Overlay
-public class HudOverlaySettings
+public class HudOverlayModel
 {
     public List<string> HudItems { get; set; } = new();
     public string HudPosition { get; set; } = "Top";
@@ -107,8 +120,7 @@ public class HudOverlaySettings
     public int HudTransparency { get; set; } = 0;
 }
 
-// 8) Performance
-public class PerformanceSettings
+public class PerformanceModel
 {
     public int FpsLimit { get; set; } = 60;
     public bool AntiAliasing { get; set; } = true;
@@ -118,8 +130,7 @@ public class PerformanceSettings
     public string ErrorBehavior { get; set; } = "Show";
 }
 
-// 9) Workspace
-public class WorkspaceSettings
+public class WorkspaceModel
 {
     public bool SaveLayout { get; set; } = false;
     public bool LoadLayout { get; set; } = false;
@@ -128,8 +139,7 @@ public class WorkspaceSettings
     public bool ImportSettings { get; set; } = false;
 }
 
-// 10) Advanced
-public class AdvancedSettings
+public class AdvancedModel
 {
     public bool MultiThreading { get; set; } = true;
     public int CacheSize { get; set; } = 128;

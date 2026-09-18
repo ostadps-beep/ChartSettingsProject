@@ -1,0 +1,48 @@
+================================================================================
+DOCUMENT 04: Model Execution Rules
+TYPE: Runtime Behavior Specification
+================================================================================
+
+PURPOSE
+-------
+Defines strict rules the model must follow during execution to prevent errors.
+
+RULES
+-----
+
+1. FIXED STRUCTURE
+------------------
+The model must NOT change:
+- JSON structure
+- UI module order
+- control names
+- category names
+
+2. FIXED BEHAVIOR
+-----------------
+The model must follow:
+- Apply/OK/Cancel/Reset rules
+- dependency rules
+- validation rules
+
+3. NO INTERPRETATION
+--------------------
+The model must NOT:
+- invent new controls
+- add new fields to JSON
+- modify default values unless specified
+
+4. DATA FLOW RULES
+------------------
+UI → ViewModel → JSON  
+JSON → ViewModel → UI  
+
+5. ERROR PREVENTION
+-------------------
+If a value is invalid:
+- reject input
+- keep previous valid value
+
+================================================================================
+END OF DOCUMENT 04
+================================================================================

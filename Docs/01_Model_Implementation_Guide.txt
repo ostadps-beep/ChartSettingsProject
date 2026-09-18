@@ -23,17 +23,31 @@ ChartSettingsModel.cs contains the root object with the following sub-models:
 9. WorkspaceModel
 10. AdvancedModel
 
+JSON MAPPING
+------------
+The model class names map to the JSON category names as follows:
+- ChartModel → Chart
+- AxesModel → Axes
+- CandlesModel → Candles
+- GridBackgroundModel → Grid
+- DrawingToolsModel → Tools
+- AnalyticalModulesModel → AnalyticalModules
+- HudOverlayModel → HUD
+- PerformanceModel → Performance
+- WorkspaceModel → Workspace
+- AdvancedModel → Advanced
+
 IMPLEMENTATION RULES
 --------------------
 - All fields must match the JSON specification exactly.
-- All numeric fields must have default values.
-- All boolean fields must be initialized to false unless specified.
+- All numeric fields must use the default value defined for that field.
+- All boolean fields must use the default value defined for that field.
 - All color fields must be stored as HEX (#RRGGBB).
 - No additional fields may be added.
 
 OUTPUT RULES
 ------------
-The model must always produce valid JSON matching the specification.
+The model must always produce valid JSON matching the defined structure.
 
 ================================================================================
 END OF DOCUMENT 01

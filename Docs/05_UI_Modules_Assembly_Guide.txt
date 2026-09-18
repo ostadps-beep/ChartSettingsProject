@@ -1,11 +1,11 @@
 ================================================================================
-DOCUMENT 03 — UI Modules Assembly Guide
+DOCUMENT 05 — UI Modules Assembly Guide
 TYPE: UI Assembly Specification
 ================================================================================
 
 PURPOSE
 -------
-Defines how the Chart Settings Panel is assembled from its 10 UI modules.
+Defines how the Chart Settings Panel is assembled from its 10 settings modules.
 
 UI STRUCTURE
 ------------
@@ -30,17 +30,19 @@ SIDEBAR ORDER
 
 MODULE RULES
 ------------
-- Only one module visible at a time.
-- Switching sidebar items replaces content area.
-- Header updates based on selected module.
+- Only one module is visible at a time.
+- Switching sidebar items replaces the content area.
+- Header updates based on the selected module.
+- Modules must remain independent; cross-module state must be handled through
+  the ViewModel rather than direct module-to-module control.
 
 FOOTER RULES
 ------------
-Apply → save  
-OK → save + close  
-Cancel → close  
-Reset → restore defaults for current module  
+Apply → save
+OK → save + close
+Cancel → close
+Reset → restore defaults for current module
 
 ================================================================================
-END OF DOCUMENT 03
+END OF DOCUMENT 05
 ================================================================================

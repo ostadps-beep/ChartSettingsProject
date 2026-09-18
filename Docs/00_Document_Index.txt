@@ -5,33 +5,52 @@ TYPE: Master Index
 
 PURPOSE
 -------
-This file provides a complete index of all documentation files in the Docs folder.
-It serves as a roadmap to prevent confusion and ensure the model knows which file
-to read for each purpose.
+This file provides the complete index of the active documentation in the Docs
+folder. It is the navigation map for implementation and prevents confusion
+about which document defines each part of the system.
 
-DOCUMENT LIST
--------------
+READ / IMPLEMENTATION ORDER
+---------------------------
+00 — Document Index
+01 — Model Implementation Guide
+02 — Model Execution Rules
+03 — ViewModel Behavior Guide
+04 — UI Components Behavior Guide
+05 — UI Modules Assembly Guide
+06 — Panel Assembly Guide
+07 — JSON Execution Guide
+08 — Integration & Runtime Rules
+09 — Model Error Prevention Guide
 
+DOCUMENT ROLES
+--------------
 01_Model_Implementation_Guide.txt
-- Defines how ChartSettingsModel and all sub-models must be implemented.
-- Prevents JSON structure errors.
+- Defines ChartSettingsModel, its sub-models, and model-level structure.
 
-02_ViewModel_Behavior_Guide.txt
+02_Model_Execution_Rules.txt
+- Defines fixed execution behavior and prevents interpretation or structural
+  changes during implementation.
+
+03_ViewModel_Behavior_Guide.txt
 - Defines binding, validation, dependencies, and button behavior.
-- Prevents incorrect UI behavior.
 
-03_UI_Modules_Assembly_Guide.txt
-- Defines how the Chart Settings Panel is assembled from its 10 modules.
-- Prevents UI assembly mistakes.
+04_UI_Components_Behavior_Guide.txt
+- Defines the input/display behavior of the reusable UI controls.
 
-04_Integration_Runtime_Rules.txt
-- Defines JSON, Python/C++ Bridge, and runtime rules.
-- Prevents integration errors.
+05_UI_Modules_Assembly_Guide.txt
+- Defines the composition and behavior of the 10 settings modules.
 
-05_Model_Error_Prevention_Guide.txt
-- Defines rules to prevent model-level mistakes (misinterpretation, wrong controls,
-  wrong bindings, wrong button logic).
-- Prevents confusion during model execution.
+06_Panel_Assembly_Guide.txt
+- Defines the complete settings window/panel assembly and module switching.
+
+07_JSON_Execution_Guide.txt
+- Defines JSON structure, validation, save, load, and apply behavior.
+
+08_Integration_Runtime_Rules.txt
+- Defines runtime communication and integration rules.
+
+09_Model_Error_Prevention_Guide.txt
+- Defines the cross-cutting checklist for preventing implementation mistakes.
 
 ARCHIVE (Legacy Documents)
 --------------------------

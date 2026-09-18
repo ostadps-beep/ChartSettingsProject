@@ -1,5 +1,5 @@
 ================================================================================
-DOCUMENT 04: Model Execution Rules
+DOCUMENT 02 — Model Execution Rules
 TYPE: Runtime Behavior Specification
 ================================================================================
 
@@ -34,8 +34,8 @@ The model must NOT:
 
 4. DATA FLOW RULES
 ------------------
-UI → ViewModel → JSON  
-JSON → ViewModel → UI  
+UI → ViewModel → JSON
+JSON → ViewModel → UI
 
 5. ERROR PREVENTION
 -------------------
@@ -44,5 +44,5 @@ If a value is invalid:
 - keep previous valid value
 
 ================================================================================
-END OF DOCUMENT 04
+END OF DOCUMENT 02
 ================================================================================

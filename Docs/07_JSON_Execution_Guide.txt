@@ -1,27 +1,24 @@
 ================================================================================
-DOCUMENT 01: JSON Execution Guide
+DOCUMENT 07 — JSON Execution Guide
 TYPE: Implementation Rules
 ================================================================================
 
 PURPOSE
 -------
 This document defines how the Chart Settings JSON must be created, validated,
-saved, loaded, and applied to the UI. It prevents model confusion and ensures
-consistent behavior across all modules.
+saved, loaded, and applied to the UI. It ensures consistent behavior across
+all modules.
 
 JSON STRUCTURE
 --------------
 The JSON tree must follow the exact structure defined in ChartSettingsModel.cs.
-Each category (Chart, Axes, Candles, Grid, Tools, HUD, Performance, Workspace,
-Advanced, AnalyticalModules) must appear as a top-level object.
 
-Example:
-{
-  "Chart": { ... },
-  "Axes": { ... },
-  "Candles": { ... },
-  ...
-}
+Top-level JSON categories:
+Chart, Axes, Candles, Grid, Tools, HUD, Performance, Workspace, Advanced,
+AnalyticalModules.
+
+The model-to-JSON mapping is defined in Document 01 and must not be changed
+during implementation.
 
 VALIDATION RULES
 ----------------
@@ -29,12 +26,13 @@ VALIDATION RULES
 - All color values must be stored as HEX (#RRGGBB).
 - All toggles must be boolean (true/false).
 - Dropdowns must store the selected option as string.
+- Undefined fields must be rejected.
 
 SAVE RULES
 ----------
 - JSON must be saved only when Apply or OK is pressed.
 - Cancel must NOT modify the JSON.
-- Reset must restore only the current category.
+- Reset must restore only the current category/module.
 
 LOAD RULES
 ----------
@@ -47,5 +45,5 @@ APPLY RULES
 - OK updates the JSON and closes the window.
 
 ================================================================================
-END OF DOCUMENT 01
+END OF DOCUMENT 07
 ================================================================================

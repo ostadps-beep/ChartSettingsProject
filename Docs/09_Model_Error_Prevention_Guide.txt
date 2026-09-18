@@ -1,5 +1,5 @@
 ================================================================================
-DOCUMENT 05 — Model Error Prevention Guide
+DOCUMENT 09 — Model Error Prevention Guide
 TYPE: Error Prevention Specification
 ================================================================================
 
@@ -7,14 +7,15 @@ PURPOSE
 -------
 This document defines rules to prevent model errors in understanding, interpreting,
 and generating code for the Chart Settings Panel. It does NOT cover runtime errors
-(system, GPU, .NET, Python/C++). It focuses only on model-level mistakes.
+(system, GPU, .NET, Python/C++). It is a cross-cutting guardrail for all
+implementation stages.
 
 ERROR TYPES
 -----------
 1. JSON Misinterpretation
    - Adding undefined fields
    - Removing required fields
-   - Changing structure order
+   - Changing structure or identifiers
 
 2. UI Assembly Errors
    - Creating wrong controls
@@ -49,14 +50,17 @@ PREVENTION RULES
 
 CHECKLIST
 ---------
-Before finalizing output, the model must verify:
+Before finalizing output, verify:
 - JSON structure matches specification
+- Model-to-JSON mapping is unchanged
 - UI modules match sidebar order
 - Controls match defined behavior
 - Buttons follow exact rules
-- No extra code or fields added
-- No structure removed or modified
+- No extra code or fields were added
+- No required structure was removed or modified
+
+This checklist applies throughout implementation, not only at the end.
 
 ================================================================================
-END OF DOCUMENT 05
+END OF DOCUMENT 09
 ================================================================================

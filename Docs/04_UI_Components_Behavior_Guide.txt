@@ -1,11 +1,12 @@
 ================================================================================
-DOCUMENT 02: UI Components Behavior Guide
+DOCUMENT 04 — UI Components Behavior Guide
 TYPE: Component Behavior Specification
 ================================================================================
 
 PURPOSE
 -------
-Defines exact behavior of all UI components used in the Chart Settings Panel.
+Defines exact behavior of all reusable UI components used in the Chart Settings
+Panel.
 
 COMPONENTS
 ----------
@@ -14,18 +15,19 @@ SLIDER
 ------
 - Output: integer
 - Range: defined per module
-- Event: OnValueChanged → updates ViewModel immediately
+- Event: OnValueChanged → updates ViewModel
 
 TOGGLE
 ------
 - Output: boolean
-- Event: OnChecked / OnUnchecked
-- Dependencies: may enable/disable other controls
+- Event: OnChecked / OnUnchecked → updates ViewModel
+- Dependencies are controlled by the ViewModel.
 
 DROPDOWN
 --------
 - Output: string (selected option)
 - Options must match the specification exactly.
+- No arbitrary options may be introduced by the UI.
 
 COLOR PICKER
 ------------
@@ -35,13 +37,14 @@ COLOR PICKER
 NUMERIC INPUT
 -------------
 - Output: integer
-- Validation: must reject non-numeric input
+- Validation: must reject non-numeric input.
 
-DEPENDENCY RULES
-----------------
-- If a control depends on another, it must be disabled until the parent is active.
-- Dependencies must be defined in ViewModel.
+VALIDATION AND DEPENDENCY BOUNDARY
+----------------------------------
+- UI components handle presentation and user input events.
+- ViewModel handles validation, dependencies, and state rules.
+- UI components must not independently redefine model or JSON rules.
 
 ================================================================================
-END OF DOCUMENT 02
+END OF DOCUMENT 04
 ================================================================================

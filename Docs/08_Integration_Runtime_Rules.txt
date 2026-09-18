@@ -1,5 +1,5 @@
 ================================================================================
-DOCUMENT 04 — Integration & Runtime Rules
+DOCUMENT 08 — Integration & Runtime Rules
 TYPE: Integration Specification
 ================================================================================
 
@@ -31,11 +31,12 @@ RUNTIME RULES
 
 FINAL VERIFICATION
 ------------------
-Before closing the window:
-- Validate all fields
-- Ensure JSON is consistent
-- Ensure no dependency conflicts exist
+Before applying or closing the window:
+- Validate all fields.
+- Ensure JSON is consistent.
+- Ensure no dependency conflicts exist.
+- Ensure no undefined fields or controls were introduced.
 
 ================================================================================
-END OF DOCUMENT 04
+END OF DOCUMENT 08
 ================================================================================

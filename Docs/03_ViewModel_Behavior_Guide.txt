@@ -1,5 +1,5 @@
 ================================================================================
-DOCUMENT 02 — ViewModel Behavior Guide
+DOCUMENT 03 — ViewModel Behavior Guide
 TYPE: ViewModel Specification
 ================================================================================
 
@@ -11,7 +11,7 @@ behavior. Prevents incorrect UI behavior and inconsistent JSON updates.
 BINDING RULES
 -------------
 - Every UI control must bind to a ViewModel property.
-- Binding must be TwoWay for all editable fields.
+- Binding must be TwoWay for editable fields.
 - Binding must be OneWay for display-only fields.
 
 VALIDATION RULES
@@ -19,12 +19,15 @@ VALIDATION RULES
 - Numeric inputs must reject invalid values.
 - Sliders must clamp values to allowed ranges.
 - Dropdowns must only accept predefined options.
+- Validation must preserve the previous valid value when input is rejected.
 
 DEPENDENCY RULES
 ----------------
-Examples:
-- If show.wicks = false → wick.thickness must be disabled.
-- If gpu.acceleration = false → anti.aliasing must be disabled.
+- Dependencies are defined and enforced in the ViewModel.
+- A dependent control must be disabled while its required parent condition is
+  inactive.
+- Examples in implementation code must use property names that exist in the
+  approved model/JSON specification.
 
 BUTTON RULES
 ------------
@@ -43,5 +46,5 @@ Reset:
   - Restore defaults for current module only
 
 ================================================================================
-END OF DOCUMENT 02
+END OF DOCUMENT 03
 ================================================================================

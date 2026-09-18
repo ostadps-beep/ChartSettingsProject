@@ -1,0 +1,43 @@
+<UserControl x:Class="ChartSettingsPanel.Sections.CandleSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Candle Settings" Style="{StaticResource DarkGroupBox}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Bullish Candle Color"/>
+            <Button Grid.Row="0" Grid.Column="1"
+                    Style="{StaticResource DarkButton}"
+                    Content="Pick Color"
+                    Command="{Binding PickBullColorCommand}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Bearish Candle Color"/>
+            <Button Grid.Row="1" Grid.Column="1"
+                    Style="{StaticResource DarkButton}"
+                    Content="Pick Color"
+                    Command="{Binding PickBearColorCommand}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Body Thickness"/>
+            <Slider Grid.Row="2" Grid.Column="1"
+                    Minimum="1" Maximum="6"
+                    Value="{Binding Settings.Candles.BodyThickness}"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Show Wicks"/>
+            <CheckBox Grid.Row="3" Grid.Column="1"
+                      Style="{StaticResource DarkCheckBox}"
+                      IsChecked="{Binding Settings.Candles.ShowWicks}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>
+
+

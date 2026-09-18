@@ -1,0 +1,33 @@
+<UserControl x:Class="ChartSettingsPanel.Sections.Advanced"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Advanced" Style="{StaticResource DarkGroupBox}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Engine Mode"/>
+            <ComboBox Grid.Row="0" Grid.Column="1"
+                      Style="{StaticResource DarkComboBox}"
+                      SelectedItem="{Binding Settings.Advanced.EngineMode}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Python Host"/>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Style="{StaticResource DarkTextBox}"
+                     Text="{Binding Settings.Advanced.PythonBridge.Host}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Python Port"/>
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Style="{StaticResource DarkTextBox}"
+                     Text="{Binding Settings.Advanced.PythonBridge.Port}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

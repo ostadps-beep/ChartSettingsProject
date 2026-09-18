@@ -1,0 +1,33 @@
+<UserControl x:Class="ChartSettingsPanel.Sections.Performance"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Performance" Style="{StaticResource DarkGroupBox}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="FPS Limit"/>
+            <Slider Grid.Row="0" Grid.Column="1"
+                    Minimum="10" Maximum="240"
+                    Value="{Binding Settings.Performance.FpsLimit}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="GPU Acceleration"/>
+            <CheckBox Grid.Row="1" Grid.Column="1"
+                      Style="{StaticResource DarkCheckBox}"
+                      IsChecked="{Binding Settings.Performance.GpuAcceleration}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Anti-Aliasing"/>
+            <CheckBox Grid.Row="2" Grid.Column="1"
+                      Style="{StaticResource DarkCheckBox}"
+                      IsChecked="{Binding Settings.Performance.AntiAliasing}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

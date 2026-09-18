@@ -1,0 +1,40 @@
+<UserControl x:Class="ChartSettingsPanel.Sections.GridBackground"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Grid & Background" Style="{StaticResource DarkGroupBox}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Background Color"/>
+            <Button Grid.Row="0" Grid.Column="1"
+                    Style="{StaticResource DarkButton}"
+                    Content="Pick Color"
+                    Command="{Binding PickBackgroundColorCommand}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Show Grid"/>
+            <CheckBox Grid.Row="1" Grid.Column="1"
+                      Style="{StaticResource DarkCheckBox}"
+                      IsChecked="{Binding Settings.GridBackground.ShowGrid}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Grid Style"/>
+            <ComboBox Grid.Row="2" Grid.Column="1"
+                      Style="{StaticResource DarkComboBox}"
+                      SelectedItem="{Binding Settings.GridBackground.GridLineStyle}"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Grid Transparency"/>
+            <Slider Grid.Row="3" Grid.Column="1"
+                    Minimum="0" Maximum="100"
+                    Value="{Binding Settings.GridBackground.GridTransparency}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

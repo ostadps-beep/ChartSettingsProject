@@ -1,0 +1,41 @@
+<UserControl x:Class="ChartSettingsPanel.Sections.AxesSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Axes Settings" Style="{StaticResource DarkGroupBox}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Price Axis Position"/>
+            <ComboBox Grid.Row="0" Grid.Column="1"
+                      Style="{StaticResource DarkComboBox}"
+                      ItemsSource="{Binding PriceAxisPositions}"
+                      SelectedItem="{Binding Settings.Axes.PricePosition}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Show Last Price"/>
+            <CheckBox Grid.Row="1" Grid.Column="1"
+                      Style="{StaticResource DarkCheckBox}"
+                      IsChecked="{Binding Settings.Axes.ShowLastPrice}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Decimal Count"/>
+            <TextBox Grid.Row="2" Grid.Column="1"
+                     Style="{StaticResource DarkTextBox}"
+                     Text="{Binding Settings.Axes.DecimalCount}"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Axis Color"/>
+            <Button Grid.Row="3" Grid.Column="1"
+                    Style="{StaticResource DarkButton}"
+                    Content="Pick Color"
+                    Command="{Binding PickAxisColorCommand}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

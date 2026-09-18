@@ -1,0 +1,53 @@
+<UserControl x:Class="ChartSettingsPanel.Sections.ChartSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Chart Settings" Style="{StaticResource DarkGroupBox}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Chart Type"/>
+            <ComboBox Grid.Row="0" Grid.Column="1"
+                      Style="{StaticResource DarkComboBox}"
+                      ItemsSource="{Binding ChartTypes}"
+                      SelectedItem="{Binding Settings.Chart.Type}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Zoom Behavior"/>
+            <ComboBox Grid.Row="1" Grid.Column="1"
+                      Style="{StaticResource DarkComboBox}"
+                      ItemsSource="{Binding ZoomBehaviors}"
+                      SelectedItem="{Binding Settings.Chart.ZoomBehavior}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Zoom Speed"/>
+            <Slider Grid.Row="2" Grid.Column="1"
+                    Minimum="0" Maximum="100"
+                    Value="{Binding Settings.Chart.ZoomSpeed}"/>
+
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Scroll Speed"/>
+            <Slider Grid.Row="3" Grid.Column="1"
+                    Minimum="0" Maximum="100"
+                    Value="{Binding Settings.Chart.ScrollSpeed}"/>
+
+            <TextBlock Grid.Row="4" Grid.Column="0" Text="Visible Candles"/>
+            <TextBox Grid.Row="4" Grid.Column="1"
+                     Style="{StaticResource DarkTextBox}"
+                     Text="{Binding Settings.Chart.VisibleCandles}"/>
+
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="Auto Fit"/>
+            <CheckBox Grid.Row="5" Grid.Column="1"
+                      Style="{StaticResource DarkCheckBox}"
+                      IsChecked="{Binding Settings.Chart.AutoFit}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

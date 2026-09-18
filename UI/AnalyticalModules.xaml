@@ -1,0 +1,34 @@
+<UserControl x:Class="ChartSettingsPanel.Sections.AnalyticalModules"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GroupBox Header="Analytical Modules" Style="{StaticResource DarkGroupBox}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Enabled"/>
+            <CheckBox Grid.Row="0" Grid.Column="1"
+                      Style="{StaticResource DarkCheckBox}"
+                      IsChecked="{Binding Settings.AnalyticalModules.Enabled}"/>
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Display Type"/>
+            <ComboBox Grid.Row="1" Grid.Column="1"
+                      Style="{StaticResource DarkComboBox}"
+                      SelectedItem="{Binding Settings.AnalyticalModules.DisplayType}"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Main Color"/>
+            <Button Grid.Row="2" Grid.Column="1"
+                    Style="{StaticResource DarkButton}"
+                    Content="Pick Color"
+                    Command="{Binding PickAnalyticalMainColorCommand}"/>
+        </Grid>
+    </GroupBox>
+</UserControl>

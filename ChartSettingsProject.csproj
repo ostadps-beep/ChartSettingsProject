@@ -11,7 +11,6 @@
   <ItemGroup>
     <Compile Remove="Core/ChartSettingsViewModel.cs" />
     <Compile Remove="Core/PythonBridge.cs" />
-    <Page Remove="UI/**/*.xaml" />
   </ItemGroup>
 
 </Project>

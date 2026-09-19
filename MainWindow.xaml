@@ -10,24 +10,24 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="220"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TabControl Grid.Column="0">
-            <TabItem Header="Chart">
-                <Grid/>
-            </TabItem>
-            <TabItem Header="Axes"/>
-            <TabItem Header="Candles"/>
-            <TabItem Header="Grid &amp; Background"/>
-            <TabItem Header="Drawing Tools"/>
-            <TabItem Header="Analytical Modules"/>
-            <TabItem Header="HUD Overlay"/>
-            <TabItem Header="Performance"/>
-            <TabItem Header="Workspace"/>
-            <TabItem Header="Advanced"/>
-        </TabControl>
+        <Border Grid.Column="0">
+            <StackPanel>
+                <Button Content="Chart"/>
+                <Button Content="Axes"/>
+                <Button Content="Candles"/>
+                <Button Content="Grid &amp; Background"/>
+                <Button Content="Drawing Tools"/>
+                <Button Content="Analytical Modules"/>
+                <Button Content="HUD Overlay"/>
+                <Button Content="Performance"/>
+                <Button Content="Workspace"/>
+                <Button Content="Advanced"/>
+            </StackPanel>
+        </Border>
 
         <ContentControl Grid.Column="1">
             <sections:ChartSettings/>
